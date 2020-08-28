@@ -10,7 +10,6 @@ const int UNDEF = -1;
 
 //----------------------------------------------------------------
 
-
 int main ()
 {
     printf ("#This is sguare equation solver\n"
@@ -44,12 +43,12 @@ int main ()
 
 int SolveSquare (double a, double b, double c, double* x1, double* x2)
 {
-    /* проверка на конечность коэф-ов */
+    /* РїСЂРѕРІРµСЂРєР° РЅР° РєРѕРЅРµС‡РЅРѕСЃС‚СЊ РєРѕСЌС„-РѕРІ */
     assert (isfinite(a));
     assert (isfinite(b));
     assert (isfinite(c));
 
-    /* проверка на правильность */
+    /* РїСЂРѕРІРµСЂРєР° РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ */
     assert (x1 != NULL);
     assert (x2 != NULL);
     assert (x1 != x2);
