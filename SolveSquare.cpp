@@ -4,14 +4,21 @@
 
 //---------------------------------------------------------------
 
-int SolveSquare(double a, double b, double c, double* x1, double* x2);
-
 const int UNDEF = -1;
 
+const double mistake = 1e-9;
 //----------------------------------------------------------------
+
+int SolveSquare (double a, double b, double c, double* x1, double* x2);
+
+bool isZero (double a);
+
+
+//-----------------------------------------------------------------------------
 
 int main ()
 {
+
     printf ("#This is sguare equation solver\n"
            "#(c) ShtunderMIPT 2020\n\n");
 
@@ -43,19 +50,19 @@ int main ()
 
 int SolveSquare (double a, double b, double c, double* x1, double* x2)
 {
-    /* проверка на конечность коэф-ов */
+    /* verification on finite coefs */
     assert (isfinite(a));
     assert (isfinite(b));
     assert (isfinite(c));
 
-    /* проверка на правильность */
+    /* verification on true pointers  */
     assert (x1 != NULL);
     assert (x2 != NULL);
     assert (x1 != x2);
 
-    if (a == 0)
+    if (isZero(a))
     {
-        if (b == 0)
+        if (isZero(b))
         {
             return (c == 0) ? UNDEF : 0;
         }
@@ -68,7 +75,7 @@ int SolveSquare (double a, double b, double c, double* x1, double* x2)
     else    /* if (a != 0) */
     {
        double d = b*b - 4*a*c;
-        if (d == 0)
+        if (isZero(d))
         {
             *x1 = *x2 = -b / (2*a);
             return 1;
@@ -86,3 +93,11 @@ int SolveSquare (double a, double b, double c, double* x1, double* x2)
 
 }
 
+//-----------------------------------------------------------------------------
+
+/*  verification on Zero coef */
+
+bool isZero (double a)
+{
+    return (fabs (a) < mistake);
+}
